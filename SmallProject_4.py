@@ -37,6 +37,12 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random
 
 cv = StratifiedKFold(y, n_folds=3, random_state=0)
 
+for train_index, test_index in cv:
+    print("test X:\n", X.ix[test_index].tail())
+    print("." * 80 )        
+    print("test y:", y.ix[test_index].tail())
+    print("=" * 80 )
+
 plt.figure(figsize=(15, 15))
 sns.heatmap(np.corrcoef(X.T), annot=True, square=True, fmt='.2f', annot_kws={'size':15},
             yticklabels=X.columns, xticklabels=X.columns)
